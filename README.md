@@ -1,5 +1,3 @@
----
-
 # OpenGamedev
 
 *Empowering users to lead game development in a transparent, efficient, and community-driven way.*
