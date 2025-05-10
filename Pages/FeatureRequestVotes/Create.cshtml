@@ -1,0 +1,47 @@
+﻿@page
+@model OpenGamedev.Pages.FeatureRequestVotes.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>FeatureRequestVote</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FeatureRequestVote.FeatureRequestId" class="control-label"></label>
+                <select asp-for="FeatureRequestVote.FeatureRequestId" class ="form-control" asp-items="ViewBag.FeatureRequestId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureRequestVote.UserId" class="control-label"></label>
+                <select asp-for="FeatureRequestVote.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureRequestVote.VoteType" class="control-label"></label>
+                <select asp-for="FeatureRequestVote.VoteType" class="form-control"></select>
+                <span asp-validation-for="FeatureRequestVote.VoteType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureRequestVote.Timestamp" class="control-label"></label>
+                <input asp-for="FeatureRequestVote.Timestamp" class="form-control" />
+                <span asp-validation-for="FeatureRequestVote.Timestamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

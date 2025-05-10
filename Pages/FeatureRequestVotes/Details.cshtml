@@ -1,0 +1,43 @@
+﻿@page
+@model OpenGamedev.Pages.FeatureRequestVotes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FeatureRequestVote</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FeatureRequestVote.FeatureRequest)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FeatureRequestVote.FeatureRequest.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FeatureRequestVote.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FeatureRequestVote.User.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FeatureRequestVote.VoteType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FeatureRequestVote.VoteType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FeatureRequestVote.Timestamp)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FeatureRequestVote.Timestamp)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.FeatureRequestVote.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

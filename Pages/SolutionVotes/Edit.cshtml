@@ -1,0 +1,54 @@
+﻿@page
+@model OpenGamedev.Pages.SolutionVotes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>SolutionVote</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SolutionVote.Id" />
+            <div class="form-group">
+                
+                <label asp-for="SolutionVote.SolutionId" class="control-label"></label>
+                <select asp-for="SolutionVote.SolutionId" class="form-control" asp-items="ViewBag.SolutionId"></select>
+                <span asp-validation-for="SolutionVote.SolutionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="SolutionVote.UserId" class="control-label"></label>
+                <select asp-for="SolutionVote.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="SolutionVote.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="SolutionVote.VoteType" class="control-label"></label>
+                <select asp-for="SolutionVote.VoteType" class="form-control"></select>
+                <span asp-validation-for="SolutionVote.VoteType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="SolutionVote.Timestamp" class="control-label"></label>
+                <input asp-for="SolutionVote.Timestamp" class="form-control" />
+                <span asp-validation-for="SolutionVote.Timestamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

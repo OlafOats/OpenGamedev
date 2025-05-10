@@ -1,0 +1,73 @@
+﻿@page
+@model OpenGamedev.Pages.Solutions.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>Solution</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Solution.FeatureRequestId" class="control-label"></label>
+                <select asp-for="Solution.FeatureRequestId" class ="form-control" asp-items="ViewBag.FeatureRequestId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solution.AuthorId" class="control-label"></label>
+                <select asp-for="Solution.AuthorId" class ="form-control" asp-items="ViewBag.AuthorId"></select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Solution.Description" class="control-label"></label>
+                <input asp-for="Solution.Description" class="form-control" />
+                <span asp-validation-for="Solution.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solution.CreationDate" class="control-label"></label>
+                <input asp-for="Solution.CreationDate" class="form-control" />
+                <span asp-validation-for="Solution.CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solution.Status" class="control-label"></label>
+                <select asp-for="Solution.Status" class="form-control"></select>
+                <span asp-validation-for="Solution.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solution.SourceCodeUrl" class="control-label"></label>
+                <input asp-for="Solution.SourceCodeUrl" class="form-control" />
+                <span asp-validation-for="Solution.SourceCodeUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solution.BuildArtifactUrl" class="control-label"></label>
+                <input asp-for="Solution.BuildArtifactUrl" class="form-control" />
+                <span asp-validation-for="Solution.BuildArtifactUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solution.BuildLog" class="control-label"></label>
+                <input asp-for="Solution.BuildLog" class="form-control" />
+                <span asp-validation-for="Solution.BuildLog" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solution.BuildDate" class="control-label"></label>
+                <input asp-for="Solution.BuildDate" class="form-control" />
+                <span asp-validation-for="Solution.BuildDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

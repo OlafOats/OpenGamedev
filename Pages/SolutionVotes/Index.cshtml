@@ -1,0 +1,54 @@
+﻿@page
+@model OpenGamedev.Pages.SolutionVotes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SolutionVote[0].Solution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolutionVote[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolutionVote[0].VoteType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolutionVote[0].Timestamp)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SolutionVote) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solution.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VoteType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

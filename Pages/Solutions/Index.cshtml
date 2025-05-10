@@ -1,0 +1,84 @@
+﻿@page
+@model OpenGamedev.Pages.Solutions.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].FeatureRequest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].SourceCodeUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].BuildArtifactUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].BuildLog)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solution[0].BuildDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Solution) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeatureRequest.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceCodeUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildArtifactUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildLog)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildDate)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

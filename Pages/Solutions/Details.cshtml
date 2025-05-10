@@ -1,0 +1,73 @@
+﻿@page
+@model OpenGamedev.Pages.Solutions.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Solution</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.FeatureRequest)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.FeatureRequest.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.Author)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.Author.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.CreationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.CreationDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.SourceCodeUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.SourceCodeUrl)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.BuildArtifactUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.BuildArtifactUrl)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.BuildLog)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.BuildLog)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solution.BuildDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solution.BuildDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Solution.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
