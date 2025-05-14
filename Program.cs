@@ -18,6 +18,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 
 var app = builder.Build();
 
+var env = app.Environment;
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -25,7 +27,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<OpenGamedevContext>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        await SeedData.InitializeAsync(context, userManager);
+        await SeedData.InitializeAsync(context, userManager, env);
     }
     catch (Exception ex)
     {

@@ -11,6 +11,7 @@ namespace OpenGamedev.Models
         InProgress,
         SolutionVotingExpired,
         Implemented,
+        Superseded,
         Closed
     }
 
@@ -83,5 +84,19 @@ namespace OpenGamedev.Models
         [Display(Name = "Запросы, зависящие от данного запроса")]
         [InverseProperty(nameof(FeatureRequestDependency.DependsOnFeatureRequest))]
         public virtual ICollection<FeatureRequestDependency> TasksDependingOnThis { get; set; } = new HashSet<FeatureRequestDependency>();
+
+        [Display(Name = "Рабочие Области")]
+        [InverseProperty(nameof(FeatureRequestWorkArea.FeatureRequest))]
+        public virtual ICollection<FeatureRequestWorkArea> FeatureRequestWorkAreas { get; set; } = new HashSet<FeatureRequestWorkArea>();
+
+        [Display(Name = "Устарела из-за запроса ID")]
+        [ForeignKey(nameof(SupersededBy))]
+        public long? SupersededByFeatureRequestId { get; set; }
+
+        [Display(Name = "Устарела из-за запроса")]
+        public virtual FeatureRequest? SupersededBy { get; set; } 
+
+        [InverseProperty(nameof(SupersededBy))]
+        public virtual ICollection<FeatureRequest> TasksSupersededByThis { get; set; } = new HashSet<FeatureRequest>();
     }
 }

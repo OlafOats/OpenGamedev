@@ -12,14 +12,18 @@ namespace OpenGamedev.Data
         public DbSet<OpenGamedev.Models.SolutionVote> SolutionVotes { get; set; } = default!;
         public DbSet<OpenGamedev.Models.FeatureCategory> FeatureCategories { get; set; } = default!;
         public DbSet<OpenGamedev.Models.FeatureRequestDependency> FeatureRequestDependencies { get; set; } = default!;
+        public DbSet<OpenGamedev.Models.WorkArea> WorkAreas { get; set; } = default!;
+        public DbSet<OpenGamedev.Models.FeatureRequestWorkArea> FeatureRequestWorkAreas { get; set; } = default!;
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<FeatureRequestVote>()
-                .HasOne(fv => fv.FeatureRequest) 
-                .WithMany(fr => fr.Votes) 
-                .HasForeignKey(fv => fv.FeatureRequestId) 
+                .HasOne(fv => fv.FeatureRequest)
+                .WithMany(fr => fr.Votes)
+                .HasForeignKey(fv => fv.FeatureRequestId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<SolutionVote>()
@@ -42,7 +46,7 @@ namespace OpenGamedev.Data
 
             modelBuilder.Entity<FeatureRequest>()
                .HasOne(fr => fr.Project)
-               .WithMany(p => p.FeatureRequests) 
+               .WithMany(p => p.FeatureRequests)
                .HasForeignKey(fr => fr.ProjectId)
                .OnDelete(DeleteBehavior.NoAction);
 
@@ -54,13 +58,13 @@ namespace OpenGamedev.Data
 
             modelBuilder.Entity<FeatureRequest>()
                .HasOne(fr => fr.Author)
-               .WithMany(u => u.CreatedFeatureRequests) 
+               .WithMany(u => u.CreatedFeatureRequests)
                .HasForeignKey(fr => fr.AuthorId)
                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Solution>()
                .HasOne(s => s.Author)
-               .WithMany(u => u.CreatedSolutions) 
+               .WithMany(u => u.CreatedSolutions)
                .HasForeignKey(s => s.AuthorId)
                .OnDelete(DeleteBehavior.NoAction);
 
@@ -92,8 +96,30 @@ namespace OpenGamedev.Data
                 .IsUnique();
 
             modelBuilder.Entity<FeatureRequestDependency>()
-               .HasIndex(d => new { d.FeatureRequestId, d.DependsOnFeatureRequestId })
-               .IsUnique();
+                .HasIndex(d => new { d.FeatureRequestId, d.DependsOnFeatureRequestId })
+                .IsUnique();
+
+            modelBuilder.Entity<FeatureRequestWorkArea>()
+                .HasKey(fra => new { fra.FeatureRequestId, fra.WorkAreaId });
+
+            modelBuilder.Entity<FeatureRequestWorkArea>()
+                .HasOne(fra => fra.FeatureRequest)
+                .WithMany(fr => fr.FeatureRequestWorkAreas)
+                .HasForeignKey(fra => fra.FeatureRequestId)
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<FeatureRequestWorkArea>()
+                .HasOne(fra => fra.WorkArea)
+                .WithMany(wa => wa.FeatureRequestWorkAreas)
+                .HasForeignKey(fra => fra.WorkAreaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<FeatureRequest>()
+                .HasOne(fr => fr.SupersededBy) 
+                .WithMany(fr => fr.TasksSupersededByThis)
+                .HasForeignKey(fr => fr.SupersededByFeatureRequestId)
+                .IsRequired(false) 
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
