@@ -6,13 +6,15 @@ namespace OpenGamedev.Models
     public enum FeatureRequestStatus
     {
         Proposed,
+        WaitingDependency,
         TaskVoting,
         ReadyForImplementation,
         InProgress,
         SolutionVotingExpired,
         Implemented,
         Superseded,
-        Closed
+        Closed,
+        Cancelled
     }
 
     public class FeatureRequest
@@ -98,5 +100,6 @@ namespace OpenGamedev.Models
 
         [InverseProperty(nameof(SupersededBy))]
         public virtual ICollection<FeatureRequest> TasksSupersededByThis { get; set; } = new HashSet<FeatureRequest>();
+        public int Priority { get; internal set; }
     }
 }

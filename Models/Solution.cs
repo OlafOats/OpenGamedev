@@ -69,5 +69,8 @@ namespace OpenGamedev.Models
         [Display(Name = "Голоса за решение")]
         [InverseProperty(nameof(SolutionVote.Solution))]
         public ICollection<SolutionVote> Votes { get; set; } = new HashSet<SolutionVote>();
+
+        [Display(Name = "Имеютя конфликтв при лиянии с main")]
+        public bool HasMergeConflicts { get; set; }
     }
 }
